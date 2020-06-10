@@ -1,0 +1,7 @@
+repository is an other name to controller
+persistency (local where the data will be stored, e.g: database) <-> repository <-> route
+
+inside the repo is where we'll fetch the data stored somewhere (db).
+
+we have methods like find, create
+
