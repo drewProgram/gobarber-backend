@@ -4,3 +4,4 @@ eslint-import-resolver-typescript: gives the ability to eslint understand the im
 date-fns: to handle with date and time
 typeorm: orm for typescript
 pg: node driver for postgres
+reflect-metadata: ts uses this to be able to use decorators
