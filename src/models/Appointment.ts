@@ -1,18 +1,19 @@
 import { uuid } from 'uuidv4';
+// Entity - something that will be saved on the db
+// PrimaryGeneratedColumn - use in the id to indicates that the id is generated
+import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn } from 'typeorm';
 
+// the decorator sends the class as a param to the Entity
+@Entity('appointments')
 class Appointment {
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column()
   provider: string;
 
+  @Column('timestamp with time zone')
   date: Date;
-
-  // Omit will consider all the attributes exept the ones you pass as a param
-  constructor({ provider, date }: Omit<Appointment, 'id'>) {
-    this.id = uuid();
-    this.provider = provider;
-    this.date = date;
-  }
 }
 
 export default Appointment;
