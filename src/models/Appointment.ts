@@ -1,7 +1,6 @@
-import { uuid } from 'uuidv4';
 // Entity - something that will be saved on the db
 // PrimaryGeneratedColumn - use in the id to indicates that the id is generated
-import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 // the decorator sends the class as a param to the Entity
 @Entity('appointments')
