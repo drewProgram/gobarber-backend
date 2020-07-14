@@ -7,16 +7,22 @@ import { parseISO } from 'date-fns';
 import AppointmentsRepository from '../repositories/AppointmentRepository';
 import CreateAppointmentService from '../services/CreateAppointmentService';
 
-const appointmenstRouter = Router();
+import ensureAuthenticated from '../middlewares/ensureAnthenticated';
 
-appointmenstRouter.get('/', async (req, res) => {
+const appointmentsRouter = Router();
+
+appointmentsRouter.use(ensureAuthenticated);
+
+appointmentsRouter.get('/', async (req, res) => {
+  console.log(req.user);
+
   const appointmentsRepository = getCustomRepository(AppointmentsRepository);
   const appointments = await appointmentsRepository.find();
 
   return res.json(appointments);
 });
 
-appointmenstRouter.post('/', async (req, res) => {
+appointmentsRouter.post('/', async (req, res) => {
   try {
     const { provider_id, date } = req.body;
 
@@ -35,4 +41,4 @@ appointmenstRouter.post('/', async (req, res) => {
   }
 });
 
-export default appointmenstRouter;
+export default appointmentsRouter;
