@@ -34,6 +34,7 @@ class AuthenticateUserService {
     // payload, secret (md5online - bootcamp), token configs (id from the user
     // who generated the token, )
     const { secret, expiresIn } = authConfig.jwt;
+
     const token = sign({}, secret, {
       subject: user.id,
       expiresIn,
