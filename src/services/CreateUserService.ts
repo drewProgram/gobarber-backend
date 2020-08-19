@@ -1,6 +1,8 @@
 import { getRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
 
+import AppError from '../errors/AppError';
+
 import User from '../models/User';
 
 interface RequestDTO {
@@ -18,7 +20,7 @@ class CreateUserService {
     });
 
     if (checkUserExists) {
-      throw Error('Email address already registred.');
+      throw new AppError('Email address already registred.');
     }
 
     // as the second param you can give a salt or the lenght of the cryptography
