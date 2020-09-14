@@ -1,7 +1,5 @@
 import { Router } from 'express';
-import { getCustomRepository } from 'typeorm';
 // parseISO - converts a string to a date object (Date())
-// isEqual - checks if two dates are the same
 import { parseISO } from 'date-fns';
 
 import AppointmentsRepository from '@modules/appointments/infra/typeorm/repositories/AppointmentRepository';
@@ -10,7 +8,6 @@ import CreateAppointmentService from '@modules/appointments/services/CreateAppoi
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAnthenticated';
 
 const appointmentsRouter = Router();
-const appointmentsRepository = new AppointmentsRepository();
 
 appointmentsRouter.use(ensureAuthenticated);
 
@@ -25,6 +22,7 @@ appointmentsRouter.post('/', async (req, res) => {
 
   const parsedDate = parseISO(date);
 
+  const appointmentsRepository = new AppointmentsRepository();
   const createAppointment = new CreateAppointmentService(
     appointmentsRepository,
   );
